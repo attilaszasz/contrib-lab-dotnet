@@ -112,7 +112,7 @@ dotnet test
 The `main` branch is automatically deployed to a shared Azure App Service demo environment
 by [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
 
-> **Live demo URL:** _not configured yet — see the deployment section below._
+> **Live demo URL:** <https://contrib-lab-dotnet-endava1.azurewebsites.net/>
 
 The contribution flow looks like this:
 
@@ -141,8 +141,9 @@ site may behave incorrectly by design. That is expected.
 Deployment uses OpenID Connect (OIDC), so no long-lived Azure credential is stored in the
 repository. The workflow reads the non-secret app name from the repository variable
 `AZURE_WEBAPP_NAME` and the authentication values from the repository secrets
-`AZURE_CLIENT_ID`, `AZURE_TENANT_ID` and `AZURE_SUBSCRIPTION_ID`. Until those are
-configured, the deployment steps are skipped and only the build and tests run.
+`AZURE_CLIENT_ID`, `AZURE_TENANT_ID` and `AZURE_SUBSCRIPTION_ID`. These are already
+configured for this repository; if the `AZURE_WEBAPP_NAME` variable is ever removed, the
+deployment steps are skipped and only the build and tests run.
 
 The deployment workflow runs only on pushes to `main` (and when triggered manually with
 **Run workflow**). Pull requests never deploy.
