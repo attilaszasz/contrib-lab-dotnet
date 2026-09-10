@@ -1,5 +1,9 @@
 # ContribLab DotNet — Contoso Corner Shop
 
+[![Deploy to Azure App Service](https://github.com/attilaszasz/contrib-lab-dotnet/actions/workflows/deploy.yml/badge.svg)](https://github.com/attilaszasz/contrib-lab-dotnet/actions/workflows/deploy.yml)
+
+**Live demo:** <https://contrib-lab-dotnet-endava1.azurewebsites.net/>
+
 A small ASP.NET Core (.NET 10) sample storefront used to practise contributing to an
 existing open-source project: finding an issue, creating a branch, opening a pull request,
 and responding to code review.
