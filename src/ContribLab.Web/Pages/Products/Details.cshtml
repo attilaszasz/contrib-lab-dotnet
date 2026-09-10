@@ -1,0 +1,24 @@
+@page "{id:int}"
+@model ContribLab.Web.Pages.Products.DetailsModel
+@{
+    ViewData["Title"] = "Product details";
+    ViewData["ActivePage"] = "Products";
+}
+
+@if (Model.Product is null)
+{
+    <h1>Product not found</h1>
+    <p>We could not find a product with that identifier.</p>
+    <a asp-page="/Products/Index">Back to products</a>
+}
+else
+{
+    <h1>@Model.Product.Name</h1>
+    <p class="lead">@Model.Product.Description</p>
+    <p>
+        <span class="badge bg-secondary">@Model.Product.Category</span>
+    </p>
+    <p class="fw-bold">@Model.Product.Price.ToString("C")</p>
+    <a class="btn btn-primary" asp-page="/Cart">Add to cart</a>
+    <a class="btn btn-outline-secondary" asp-page="/Products/Index">Back to products</a>
+}

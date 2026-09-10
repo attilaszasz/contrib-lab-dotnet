@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ContribLab.Web/ContribLab.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ContribLab.Tests/ContribLab.Tests.csproj" />
+  </Folder>
+</Solution>

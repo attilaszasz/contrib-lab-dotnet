@@ -1,0 +1,78 @@
+@page
+@model ContribLab.Web.Pages.Products.IndexModel
+@{
+    ViewData["Title"] = "Products";
+    ViewData["ActivePage"] = "Products";
+}
+
+<h1 class="mb-3">Products</h1>
+
+<form method="get" class="row g-2 align-items-end mb-4">
+    <div class="col-md-4">
+        <label class="form-label" for="SearchInput">Search by name</label>
+        <input class="form-control" id="SearchInput" name="search" value="@Model.Search" placeholder="e.g. Laptop" />
+    </div>
+    <div class="col-md-3">
+        <label class="form-label" for="SearchInput">Category</label>
+        <select class="form-select" id="CategorySelect" name="category">
+            <option value="">All categories</option>
+            @foreach (var category in Model.Categories)
+            {
+                <option value="@category" selected="@(category == Model.Category)">@category</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-3">
+        <label class="form-label" for="SortSelect">Sort by</label>
+        <select class="form-select" id="SortSelect" name="sort">
+            <option value="">Default</option>
+            <option value="price_asc" selected="@(Model.Sort == "price_asc")">Price: Low to High</option>
+            <option value="price_desc" selected="@(Model.Sort == "price_desc")">Price: High to Low</option>
+            <option value="name" selected="@(Model.Sort == "name")">Name</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100">Apply</button>
+    </div>
+</form>
+
+<p class="text-muted">
+    Showing @Model.ProductCount products.
+    <a asp-page="/Products/Index" asp-route-search="@Model.Search">Clear search</a>
+</p>
+
+<div class="row">
+    @foreach (var product in Model.Products)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100" id="product-card">
+                <img src="~/images/product-placeholder.svg" class="card-img-top p-3" style="height: 140px; object-fit: contain;" />
+                <div class="card-body">
+                    <h2 class="h5 card-title">@product.Name</h2>
+                    <p class="card-text">@product.Description</p>
+                    <p class="card-text fw-bold">@product.Price</p>
+                    <p class="card-text">
+                        <span class="badge bg-secondary">@product.Category</span>
+                    </p>
+                    <a class="btn btn-sm btn-outline-primary" asp-page="/Products/Details" asp-route-id="1">Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<nav aria-label="Product pages">
+    <ul class="pagination">
+        @for (var pageIndex = 0; pageIndex < Model.TotalPages; pageIndex++)
+        {
+            <li class="page-item @(pageIndex == Model.PageNumber ? "active" : "")">
+                <a class="page-link"
+                   asp-page="/Products/Index"
+                   asp-route-page="@pageIndex"
+                   asp-route-search="@Model.Search"
+                   asp-route-category="@Model.Category"
+                   asp-route-sort="@Model.Sort">Page @pageIndex</a>
+            </li>
+        }
+    </ul>
+</nav>

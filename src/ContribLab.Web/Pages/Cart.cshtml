@@ -1,0 +1,42 @@
+@page
+@model ContribLab.Web.Pages.CartModel
+@{
+    ViewData["Title"] = "Cart";
+    ViewData["ActivePage"] = "Cart";
+}
+
+<h1 class="mb-3">Your cart</h1>
+
+@if (TempData["CartMessage"] is string cartMessage)
+{
+    <div class="alert alert-info" role="alert">@cartMessage</div>
+}
+
+<h3>Items</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Unit price</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.UnitPrice.ToString("C")</td>
+                <td>
+                    <a asp-page="/Cart" asp-route-remove="2">Remove</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>Items in cart: @Model.ItemCount</p>
+<p class="fw-bold">Total: @Model.Total.ToString("C")</p>

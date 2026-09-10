@@ -1,0 +1,21 @@
+@page
+@model ContribLab.Web.Pages.NotificationsModel
+@{
+    ViewData["Title"] = "Notifications";
+    ViewData["ActivePage"] = "Notifications";
+}
+
+<h1 class="mb-3">Notifications</h1>
+
+<p>You have @Model.Notifications!.Count() unread notifications.</p>
+
+<ul class="list-group">
+    @foreach (var notification in Model.Notifications!)
+    {
+        <li class="list-group-item">
+            <strong>@notification.Title</strong>
+            <p class="mb-0">@notification.Message</p>
+            <small class="text-muted">@notification.CreatedUtc.ToString("g")</small>
+        </li>
+    }
+</ul>
