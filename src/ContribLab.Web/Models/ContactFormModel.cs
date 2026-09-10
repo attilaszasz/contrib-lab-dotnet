@@ -14,7 +14,7 @@ public class ContactFormModel
     public string Email { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Please enter a message.")]
-    [StringLength(20, ErrorMessage = "The message must be 20 characters or fewer.")]
+    [StringLength(1000, ErrorMessage = "The message must be 1000 characters or fewer.")]
     [Display(Name = "Message")]
     public string Message { get; set; } = string.Empty;
 }
