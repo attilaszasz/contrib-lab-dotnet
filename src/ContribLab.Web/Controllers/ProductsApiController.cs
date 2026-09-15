@@ -45,6 +45,6 @@ public class ProductsApiController : ControllerBase
             Category = request.Category
         };
 
-        return CreatedAtAction(nameof(GetById), new { id = 1 }, product);
+        return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
     }
 }
