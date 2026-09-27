@@ -40,9 +40,11 @@ public class IndexModel : PageModel
     {
         var products = _productService.GetAll().AsEnumerable();
 
-        if (!string.IsNullOrEmpty(Search))
+        var search = Search?.Trim();
+
+        if (!string.IsNullOrEmpty(search))
         {
-            products = products.Where(product => product.Name.Contains(Search));
+            products = products.Where(product => product.Name.Contains(search));
         }
 
         products = Sort switch
