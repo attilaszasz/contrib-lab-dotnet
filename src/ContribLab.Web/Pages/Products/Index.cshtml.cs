@@ -47,7 +47,7 @@ public class IndexModel : PageModel
 
         products = Sort switch
         {
-            "price_asc" => products.OrderByDescending(product => product.Price),
+            "price_asc" => products.OrderBy(product => product.Price),
             "price_desc" => products.OrderByDescending(product => product.Price),
             "name" => products.OrderBy(product => product.Name),
             _ => products
