@@ -12,7 +12,7 @@ public class FeedbackApiController : ControllerBase
     {
         if (string.IsNullOrWhiteSpace(request.Message))
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, "The message is required.");
+            return BadRequest("The message is required.");
         }
 
         return Ok(new
