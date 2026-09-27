@@ -45,6 +45,11 @@ public class IndexModel : PageModel
             products = products.Where(product => product.Name.Contains(Search));
         }
 
+        if (!string.IsNullOrEmpty(Category))
+        {
+            products = products.Where(product => product.Category == Category);
+        }
+
         products = Sort switch
         {
             "price_asc" => products.OrderByDescending(product => product.Price),
