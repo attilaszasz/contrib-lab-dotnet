@@ -23,7 +23,7 @@ public class CartModel : PageModel
     public void OnGet(int? remove)
     {
         Items = _cartService.GetItems();
-        Total = Items.Sum(item => item.UnitPrice);
+        Total = _cartService.CalculateTotal();
         ItemCount = Items.Count;
 
         if (remove.HasValue)
