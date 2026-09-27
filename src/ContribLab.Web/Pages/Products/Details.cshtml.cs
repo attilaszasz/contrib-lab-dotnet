@@ -1,5 +1,6 @@
 using ContribLab.Web.Models;
 using ContribLab.Web.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ContribLab.Web.Pages.Products;
@@ -18,5 +19,9 @@ public class DetailsModel : PageModel
     public void OnGet(int id)
     {
         Product = _productService.GetById(id);
+        if (Product is null)
+        {
+            Response.StatusCode = StatusCodes.Status404NotFound;
+        }
     }
 }
